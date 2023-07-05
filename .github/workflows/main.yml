@@ -1,0 +1,29 @@
+name: remote ssh command
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - application/config/database.php
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.CONSOLEOTT_WS_H }}
+        username: ${{ secrets.CONSOLEOTT_WS_U }}
+        password: ${{ secrets.CONSOLEOTT_WS_P }}
+        script: |
+          cd /var/www/html/
+          sudo git pull origin master
+          sudo git status
+          whoami
+          ls -al
