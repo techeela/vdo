@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.CONSOLEOTT_WS_P }}
         script: |
           cd /var/www/html/vdo/
-          sudo git pull origin master
+          sudo git pull origin main
           sudo git status
           whoami
           ls -al
