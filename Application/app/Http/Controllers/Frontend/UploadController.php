@@ -135,8 +135,9 @@ class UploadController extends Controller
                     'extension' => $fileExtension,
                     'filename' => $uploadResponse->filename,
                     'path' => $uploadResponse->path,
-                    'cdn_url' => $cdn_url,
-                    'link' => $uploadResponse->link,
+                    //'cdn_url' => $cdn_url,
+                    //'link' => $uploadResponse->link,
+                    'link' => $cdn_url,
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
                 ]);
