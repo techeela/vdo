@@ -121,7 +121,7 @@ class UploadController extends Controller
 
 
                 $cdn_id = $bunny_response->getBody();
-               // $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id."/playlist.m3u8"; 
+                $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id->id."/playlist.m3u8"; 
                 
                 
                 $createFileEntry = FileEntry::create([
@@ -134,8 +134,8 @@ class UploadController extends Controller
                     'size' => $fileSize,
                     'extension' => $fileExtension,
                     'filename' => $uploadResponse->filename,
-                    //'path' => $uploadResponse->path,
-                    'path' => $cdn_id,
+                    'path' => $uploadResponse->path,
+                    'cdn_url' => $cdn_url,
                     'link' => $uploadResponse->link,
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
