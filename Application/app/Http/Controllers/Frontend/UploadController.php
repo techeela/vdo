@@ -106,7 +106,7 @@ class UploadController extends Controller
                     return $uploadResponse;
                 }
                 
-                $bunny_client = new \GuzzleHttp\Client();
+                 $bunny_client = new \GuzzleHttp\Client();
 
                 $url_bunny_fetch = str_replace('ottconsole.s3.ap-southeast-1.wasabisys.com','vdodelivery.b-cdn.net/ottconsole',$uploadResponse->link);
 
@@ -120,8 +120,8 @@ class UploadController extends Controller
                   ]);
 
 
-                $cdn_url = $bunny_response;
-                //$cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id."/playlist.m3u8"; 
+                $cdn_id = $bunny_response->id;
+                $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id."/playlist.m3u8"; 
                 
                 
                 $createFileEntry = FileEntry::create([
@@ -135,7 +135,7 @@ class UploadController extends Controller
                     'extension' => $fileExtension,
                     'filename' => $uploadResponse->filename,
                     'path' => $uploadResponse->path,
-                    'link' => $cdn_url,
+                    'link' => $uploadResponse->link,
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
                 ]);
