@@ -82,6 +82,7 @@ class FileEntry extends Model
         'path',
         'link',
         'cdn_url',
+        'bunny_id',
         'access_status',
         'password',
         'downloads',
