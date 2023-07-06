@@ -139,7 +139,7 @@ class UploadController extends Controller
                     'cdn_url' => $cdn_url,
                     'link' => $uploadResponse->link,
                     'embed_code' => $embed_code,
-                    'bunny_id' => $bunny_id,
+                    //'bunny_id' => $bunny_id,
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
                 ]);
