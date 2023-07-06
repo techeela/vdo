@@ -105,22 +105,7 @@ class UploadController extends Controller
                 if ($uploadResponse->type == "error") {
                     return $uploadResponse;
                 }
-                $createFileEntry = FileEntry::create([
-                    'ip' => $ip,
-                    'shared_id' => $sharedId,
-                    'user_id' => $userId,
-                    'storage_provider_id' => $storageProvider->id,
-                    'name' => $fileName,
-                    'mime' => $fileMimeType,
-                    'size' => $fileSize,
-                    'extension' => $fileExtension,
-                    'filename' => $uploadResponse->filename,
-                    'path' => $uploadResponse->path,
-                    'link' => $uploadResponse->link,
-                    'password' => $request->password,
-                    'expiry_at' => $expiryAt,
-                ]);
-
+                
                 $bunny_client = new \GuzzleHttp\Client();
 
                 $url_bunny_fetch = str_replace('ottconsole.s3.ap-southeast-1.wasabisys.com','vdodelivery.b-cdn.net/ottconsole',$uploadResponse->link);
@@ -135,11 +120,30 @@ class UploadController extends Controller
                   ]);
 
 
-             
+                $cdn_id = $bunny_response->id;
+                $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id."/playlist.m3u8"; 
+                
+                
+                $createFileEntry = FileEntry::create([
+                    'ip' => $ip,
+                    'shared_id' => $sharedId,
+                    'user_id' => $userId,
+                    'storage_provider_id' => $storageProvider->id,
+                    'name' => $fileName,
+                    'mime' => $fileMimeType,
+                    'size' => $fileSize,
+                    'extension' => $fileExtension,
+                    'filename' => $uploadResponse->filename,
+                    'path' => $uploadResponse->path,
+                    'link' => $uploadResponse->link,
+                    'cdn_url' => $cdn_url,
+                    'password' => $request->password,
+                    'expiry_at' => $expiryAt,
+                ]);
 
+                
                 return response()->json([
                     'type' => 'success',
-                    'bny' => $bunny_response->getBody(),
                     'file_id' => $createFileEntry->shared_id,
                     'file_link' => route('file.view', $createFileEntry->shared_id),
                 ]);
