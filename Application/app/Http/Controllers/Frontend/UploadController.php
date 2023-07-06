@@ -123,8 +123,10 @@ class UploadController extends Controller
 
                 $bunny_client = new \GuzzleHttp\Client();
 
+                $url_bunny_fetch = str_replace('ottconsole.s3.ap-southeast-1.wasabisys.com','https://vdodelivery.b-cdn.net/ottconsole',$uploadResponse->link);
+
                 $bunny_response = $bunny_client->request('POST', 'https://video.bunnycdn.com/library/135513/videos/fetch', [
-                    'body' => '{"url":"https://vdodelivery.b-cdn.net/ottconsole/users/EygXeGOJzAa7L/rIPtJyX5H30RGA6_1688582095.mp4"}',
+                    'body' => '{"url":'.$url_bunny_fetch.'}',
                     'headers' => [
                       'AccessKey' => '028b3698-5642-4b07-b8742b003b90-01b9-43c1',
                       'accept' => 'application/json',
@@ -133,11 +135,11 @@ class UploadController extends Controller
                   ]);
 
 
-                echo $bunny_response->getBody();
-                die();
+             
 
                 return response()->json([
                     'type' => 'success',
+                    'bny' => $bunny_response->getBody(),
                     'file_id' => $createFileEntry->shared_id,
                     'file_link' => route('file.view', $createFileEntry->shared_id),
                 ]);
