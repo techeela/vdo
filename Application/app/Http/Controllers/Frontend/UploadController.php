@@ -120,6 +120,22 @@ class UploadController extends Controller
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
                 ]);
+
+                $bunny_client = new \GuzzleHttp\Client();
+
+                $bunny_response = $bunny_client->request('POST', 'https://video.bunnycdn.com/library/135513/videos/fetch', [
+                    'body' => '{"url":"https://vdodelivery.b-cdn.net/ottconsole/users/EygXeGOJzAa7L/rIPtJyX5H30RGA6_1688582095.mp4"}',
+                    'headers' => [
+                      'AccessKey' => '028b3698-5642-4b07-b8742b003b90-01b9-43c1',
+                      'accept' => 'application/json',
+                      'content-type' => 'application/*+json',
+                    ],
+                  ]);
+
+
+                echo $bunny_response->getBody();
+                die();
+
                 return response()->json([
                     'type' => 'success',
                     'file_id' => $createFileEntry->shared_id,
