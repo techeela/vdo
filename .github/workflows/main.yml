@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.CONSOLEOTT_WS_U }}
         password: ${{ secrets.CONSOLEOTT_WS_P }}
         script: |
-          cd /var/www/html/vdo/
+          cd /var/www/vdogit/vdo/
           sudo git pull origin main
           sudo git status
           whoami
