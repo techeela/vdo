@@ -123,10 +123,10 @@ class UploadController extends Controller
 
                 $bunny_client = new \GuzzleHttp\Client();
 
-                $url_bunny_fetch = str_replace('ottconsole.s3.ap-southeast-1.wasabisys.com','https://vdodelivery.b-cdn.net/ottconsole',$uploadResponse->link);
+                $url_bunny_fetch = str_replace('ottconsole.s3.ap-southeast-1.wasabisys.com','vdodelivery.b-cdn.net/ottconsole',$uploadResponse->link);
 
                 $bunny_response = $bunny_client->request('POST', 'https://video.bunnycdn.com/library/135513/videos/fetch', [
-                    'body' => '{"url":'.$url_bunny_fetch.'}',
+                    'body' => '{"url":"'.$url_bunny_fetch.'"}',
                     'headers' => [
                       'AccessKey' => '028b3698-5642-4b07-b8742b003b90-01b9-43c1',
                       'accept' => 'application/json',
