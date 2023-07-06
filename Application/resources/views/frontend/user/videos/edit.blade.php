@@ -30,6 +30,12 @@
                                 value="{{ $fileEntry->name }}">
                         </div>
                         <div class="mb-4">
+                            <label class="form-label">{{ lang('Video URL', 'videos') }} : <span
+                                    class="red">*</span></label>
+                            <input type="text" name="filename" class="form-control form-control-md"
+                                value="{{ $fileEntry->cdn_url }}">
+                        </div>
+                        <div class="mb-4">
                             <label class="form-label">{{ lang('Access status', 'videos') }} : <span
                                     class="red">*</span></label>
                             <select name="access_status" class="form-select form-select-md">
