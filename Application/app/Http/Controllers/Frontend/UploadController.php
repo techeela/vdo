@@ -121,8 +121,7 @@ class UploadController extends Controller
 
 
                 $cdn_id = json_decode($bunny_response->getBody());
-                $bunny_id = $cdn_id->id;
-                $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$bunny_id."/playlist.m3u8"; 
+                $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id->id."/playlist.m3u8"; 
  
                   
                 $createFileEntry = FileEntry::create([
@@ -138,8 +137,8 @@ class UploadController extends Controller
                     'path' => $uploadResponse->path,
                     'cdn_url' => $cdn_url,
                     'link' => $uploadResponse->link,
-                    'embed_code' => $embed_code,
-                    //'bunny_id' => $bunny_id,
+                    'embed_code' => $embed_code
+                    //'link' => $cdn_url,
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
                 ]);
