@@ -120,7 +120,7 @@ class UploadController extends Controller
                   ]);
 
 
-              //  $cdn_id = $bunny_response->id;
+                $cdn_id = $bunny_response;
                // $cdn_url = "https://vz-eadc8eb2-d21.b-cdn.net/".$cdn_id."/playlist.m3u8"; 
                 
                 
