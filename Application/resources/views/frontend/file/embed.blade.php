@@ -14,7 +14,7 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', () => {
-	const source = {{ $fileEntry->cdn_url }};
+	const source = '{{ $fileEntry->cdn_url }}';
 	const video = document.querySelector('video');
 
 	const defaultOptions = {};
