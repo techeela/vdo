@@ -137,7 +137,7 @@ class UploadController extends Controller
                     'path' => $uploadResponse->path,
                     'cdn_url' => $cdn_url,
                     'link' => $uploadResponse->link,
-                    //'bunny_id' => $cdn_id->id,
+                    'bunny_id' => $cdn_id->id,
                     //'link' => $cdn_url,
                     'password' => $request->password,
                     'expiry_at' => $expiryAt,
